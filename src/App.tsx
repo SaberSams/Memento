@@ -1,9 +1,24 @@
 import React from 'react';
-import './App.css';
+import shuffle from './utils/shuffle';
+import { Card } from './components/Card';
 
 function App() {
+  const [cards, setCards] = React.useState(shuffle);
+
   return (
-    <div>
+    <div className='grid'>
+      {cards.map((card) => {
+        const { image, id } = card;
+
+        return (
+          <Card
+            key={id}
+            image={image}
+            selected={false}
+            onClick={() => {}}
+          />
+        )
+      })}
     </div>
   );
 }
