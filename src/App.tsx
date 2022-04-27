@@ -9,7 +9,7 @@ const App = () => {
   const [firstPick, setFirstPick] = useState<ICard | null>(null);
   const [secondPick, setSecondPick] = useState<ICard | null>(null);
   const [disabled, setDisabled] = useState(false);
-  const [wins, setWins] = useState(0);
+  const [wins] = useState(0);
 
   //handle card selection and check for a match
   const handleClick = (card: ICard) => {
