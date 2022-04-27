@@ -6,40 +6,40 @@ import { Card } from './components/Card';
 
 const App = () => {
   const [cards, setCards] = useState(shuffle);
-  const [pickOne, setPickOne] = useState<ICard | null>(null);
-  const [pickTwo, setPickTwo] = useState<ICard | null>(null);
+  const [firstPick, setFirstPick] = useState<ICard | null>(null);
+  const [secondPick, setSecondPick] = useState<ICard | null>(null);
   const [disabled, setDisabled] = useState(false);
   const [wins, setWins] = useState(0);
 
   //handle card selection and check for a match
   const handleClick = (card: ICard) => {
-    if (!disabled) {
-      pickOne ? setPickTwo(card) : setPickOne(card);
+    if (disabled) {
+      firstPick ? setSecondPick(card) : setFirstPick(card);
     }
   }
 
   // reset state when turn ends
   const handleTurn = () => {
-    setPickOne(null)
-    setPickTwo(null)
+    setFirstPick(null)
+    setSecondPick(null)
     setDisabled(false)
   }
-
+  
   // Used for selection and matching
   useEffect(() => {
     let pickTimer: NodeJS.Timeout
-
-    if (pickOne && pickTwo) {
-      if (pickOne.image === pickTwo.image) {
+    
+    if (firstPick && secondPick) {
+      if (firstPick.image === secondPick.image) {
         setCards(prevState => prevState
           .map(card => {
-            if (card.image === pickOne.image) {
+            if (card.image === firstPick.image) {
               return {...card, matched: true}
             } else {
               return card;
             }
           })
-        )
+          )
       } else {
         setDisabled(true)
         pickTimer = setTimeout(() => {
@@ -47,11 +47,10 @@ const App = () => {
         }, 1000)
       }
     } 
-
     return (() => {
       clearTimeout(pickTimer)
     })
-  }, [cards, pickOne, pickTwo])
+  }, [cards, firstPick, secondPick])
 
   return (
     <>
@@ -64,7 +63,7 @@ const App = () => {
             <Card
               key={id}
               image={image}
-              selected={card === pickOne || card === pickTwo || matched}
+              selected={card === firstPick || card === secondPick || matched}
               onClick={() => handleClick(card)}
             />
           )
