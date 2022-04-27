@@ -13,7 +13,7 @@ const App = () => {
 
   //handle card selection and check for a match
   const handleClick = (card: ICard) => {
-    if (disabled) {
+    if (!disabled) {
       firstPick ? setSecondPick(card) : setFirstPick(card);
     }
   }
@@ -22,7 +22,6 @@ const App = () => {
   const handleTurn = () => {
     setFirstPick(null)
     setSecondPick(null)
-    setDisabled(false)
   }
   
   // Used for selection and matching
@@ -45,6 +44,7 @@ const App = () => {
         pickTimer = setTimeout(() => {
           handleTurn()
         }, 1000)
+        setDisabled(false)
       }
     } 
     return (() => {
