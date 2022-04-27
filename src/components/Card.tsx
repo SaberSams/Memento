@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { MouseEventHandler } from 'react'
+import { JsxEmit } from 'typescript'
 
-export const Card = ({image, selected, onClick}:{image:string, selected: boolean, onClick:Function}) => {
+export const Card = ({image, selected, onClick}:{image:string, selected: boolean, onClick:MouseEventHandler<HTMLImageElement>}) => {
   return (
     <div className={"card"}>
-      <div className={selected ? "" : ""}>
-        <img alt="" src={image} className="p-4" />
-        <img alt="" src={`/assets/back.png`} className="" />
+      <div className={selected ? "selected" : ""}>
+        <img alt="" src={image} className="card-face" />
+        <img alt="" src={`/assets/cardback.png`} className="card-back" onClick={onClick} />
       </div>
     </div>
   )
