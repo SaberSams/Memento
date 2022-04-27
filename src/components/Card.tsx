@@ -1,5 +1,4 @@
 import React, { MouseEventHandler } from 'react'
-import { JsxEmit } from 'typescript'
 
 export const Card = ({image, selected, onClick}:{image:string, selected: boolean, onClick:MouseEventHandler<HTMLImageElement>}) => {
   return (
