@@ -9,6 +9,7 @@ const App = () => {
   const [cards, setCards] = useState(shuffle);
   const [picks, setPicks] = useState<ICard[]>([]);
   const [disabled, setDisabled] = useState(false);
+  const [score, setScore] = useState(100);
   const [wins, setWins] = useState(0);
 
   //handle card selection and check for a match
@@ -24,9 +25,10 @@ const App = () => {
   }
 
   const reset = () => {
-    setPicks([]);
-    setCards(shuffle);
-    setDisabled(false);
+    setPicks([])
+    setScore(100)
+    setCards(shuffle)
+    setDisabled(false)
   }
 
   // Used for selection and matching
@@ -43,6 +45,7 @@ const App = () => {
       setCards(prevState => prevState
         .map(card => {
           if (card.image === pickOne.image) {
+            setScore(score + 20)
             return { ...card, matched: true }
           } else {
             return card;
@@ -53,6 +56,7 @@ const App = () => {
       // disable the UI so the cards have time to flip back over
       setDisabled(true)
       pickTimer = setTimeout(() => {
+        setScore(score - 10)
         setPicks([])
         setDisabled(false)
       }, 1000)
@@ -60,7 +64,7 @@ const App = () => {
     return (() => {
       clearTimeout(pickTimer)
     })
-  }, [cards, picks])
+  }, [cards, picks, score])
 
   useEffect(() => {
     // check if all cards have been matched
@@ -72,7 +76,7 @@ const App = () => {
 
   return (
     <>
-      <Header wins={wins} reset={reset}></Header>
+      <Header wins={wins} score={score} reset={reset}></Header>
       <div className='grid'>
         {cards.map((card) => {
           const { image, id, matched } = card;
