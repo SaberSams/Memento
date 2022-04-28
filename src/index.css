@@ -7,7 +7,7 @@ warning in VSCode,change the css.lint.unknownAtRules setting to ignore. */
 @import-normalize;
 
 :root {
-  --text: #f66936;
+  --text: #000000;
   --card: #202426;
   --orange: #ffa200;
   --bg: linear-gradient(135deg, #fc2473, #f66936);
@@ -78,6 +78,15 @@ button {
   padding: 0.5rem;
   border-radius: 3px;
   margin: auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: var(--card);
+  border-radius: var(--radius);
 }
 
 /* ========= Grid ========================= */

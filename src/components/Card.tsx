@@ -1,6 +1,6 @@
 import React, { MouseEventHandler } from 'react'
 
-export const Card = ({image, selected, onClick}:{image:string, selected: boolean, onClick:MouseEventHandler<HTMLImageElement>}) => {
+export const Card = ({ image, selected, onClick }: { image: string, selected: boolean, onClick: MouseEventHandler<HTMLImageElement> }) => {
   return (
     <div className={"card"}>
       <div className={selected ? "selected" : ""}>
