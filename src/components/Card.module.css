@@ -1,0 +1,53 @@
+@import "../index.css";
+
+/* ========= Card ========================= */
+.card {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  width: var(--card-width);
+  animation: var(--card-enter);
+  border-radius: var(--radius);
+}
+
+.card img {
+  width: 100%;
+  background: white;
+}
+
+.cardFace,
+.cardBack {
+  padding: 1rem;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+
+.cardFace {
+  position: absolute;
+  transform: var(--rotate-90);
+}
+
+.cardBack {
+  transform: var(--rotate-0);
+  transition-delay: var(--delay);
+}
+
+.selected .cardFace {
+  transform: var(--rotate-0);
+  transition-delay: var(--delay);
+}
+
+.selected .cardBack {
+  transform: var(--rotate-90);
+  transition-delay: 0s;
+}
+
+@media screen and (max-width: 720px) {
+  .card {
+    width: 100%;
+  }
+}

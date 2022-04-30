@@ -89,45 +89,8 @@ button {
   border-radius: var(--radius);
 }
 
-/* ========= Card ========================= */
-.card {
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  width: var(--card-width);
-  animation: var(--card-enter);
-  border-radius: var(--radius);
-}
-.card img {
-  width: 100%;
-  background: white;
-}
-.card-face,
-.card-back {
-  padding: 1rem;
-  background: var(--card);
-  box-shadow: var(--shadow);
-  border-radius: var(--radius);
-  transition: var(--transition);
-}
-.card-face {
-  position: absolute;
-  transform: var(--rotate-90);
-}
-.card-back {
-  transform: var(--rotate-0);
-  transition-delay: var(--delay);
-}
-.selected .card-face {
-  transform: var(--rotate-0);
-  transition-delay: var(--delay);
-}
-.selected .card-back {
-  transform: var(--rotate-90);
-  transition-delay: 0s;
-}
+
+
 @keyframes enter {
   from {
     opacity: 0;
@@ -139,25 +102,6 @@ button {
   }
 }
 
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.grid-cols-5 {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-
-.grid-cols-6 {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-}
 
 /* ========= Mobile ===================== */
 @media screen and (max-width: 720px) {
