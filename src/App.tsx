@@ -5,9 +5,9 @@ import { Header } from './components/Header';
 
 const levels:Array<[number, number]> = [
   [2,2],
-  [2,3],
   [3,4],
-  [4,4]
+  [4,4],
+  [4,5],
 ]
 
 
