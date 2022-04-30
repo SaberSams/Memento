@@ -4,7 +4,10 @@ export interface ICard {
   matched: boolean;
 }
 
-export const shuffle = (): ICard[] => {
+export const shuffle = ([rows, cols]: [
+  rows: number,
+  colums: number
+]): ICard[] => {
   const assets = [
     { image: "/assets/btc.png" },
     { image: "/assets/eth.png" },
@@ -15,7 +18,10 @@ export const shuffle = (): ICard[] => {
     { image: "/assets/xrp.png" },
     { image: "/assets/sol.png" },
   ];
-  return [...assets, ...assets]
+
+  let amount = rows * cols;
+
+  return [...assets.slice(0,amount/2), ...assets.slice(0,amount/2)]
     .sort(() => 0.5 - Math.random())
     .map((card) => ({
       ...card,

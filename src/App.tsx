@@ -3,10 +3,17 @@ import { shuffle, ICard } from './utils/shuffle';
 import { Card } from './components/Card';
 import { Header } from './components/Header';
 
+const levels:Array<[number, number]> = [
+  [2,2],
+  [2,3],
+  [3,4],
+  [4,4]
+]
 
 
-const App = () => {
-  const [cards, setCards] = useState(shuffle);
+const App: React.FC = () => {
+  const [level, setLevel] = useState(0);
+  const [cards, setCards] = useState(shuffle(levels[level]));
   const [picks, setPicks] = useState<ICard[]>([]);
   const [disabled, setDisabled] = useState(false);
   const [score, setScore] = useState(100);
@@ -26,8 +33,7 @@ const App = () => {
 
   const reset = () => {
     setPicks([])
-    setScore(100)
-    setCards(shuffle)
+    setCards(shuffle(levels[level]))
     setDisabled(false)
   }
 
@@ -45,7 +51,7 @@ const App = () => {
       setCards(prevState => prevState
         .map(card => {
           if (card.image === pickOne.image) {
-            setScore(score + 20)
+            setScore(score => score + 20)
             return { ...card, matched: true }
           } else {
             return card;
@@ -56,7 +62,7 @@ const App = () => {
       // disable the UI so the cards have time to flip back over
       setDisabled(true)
       pickTimer = setTimeout(() => {
-        setScore(score - 10)
+        setScore(score => score - 10)
         setPicks([])
         setDisabled(false)
       }, 1000)
@@ -66,18 +72,30 @@ const App = () => {
     })
   }, [cards, picks, score])
 
+  // check if the user beat the level
   useEffect(() => {
+    let winTimer: NodeJS.Timeout
     // check if all cards have been matched
     if (cards.every(card => card.matched)) {
-      setDisabled(true);
-      setWins(prevState => prevState + 1);
-    }
-  },[cards])
+      const nextLevel = level >= 4 ?  4 : level + 1
+      winTimer = setTimeout(() => {
+      setDisabled(true)
+      setLevel(level => level = nextLevel)
+      setWins(wins => wins + 1)
+      setPicks([])
+      setDisabled(false);
+      setCards(shuffle(levels[nextLevel]))
+    }, 1000)
+  }
+  return (() => {
+      clearTimeout(winTimer)
+    })
+  },[cards, level])
 
   return (
     <>
       <Header wins={wins} score={score} reset={reset}></Header>
-      <div className='grid'>
+      <div className={`grid m-12 gap-2 grid-cols-${levels[level][0]}`}>
         {cards.map((card) => {
           const { image, id, matched } = card;
 

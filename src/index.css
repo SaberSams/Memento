@@ -90,8 +90,8 @@ button {
 }
 
 /* ========= Grid ========================= */
-.grid {
-  gap: 1.25rem;
+.grid_ {
+gap: 1.25rem;
   display: grid;
   margin: 3rem auto;
   grid-template-columns: repeat(4, auto);
