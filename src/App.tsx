@@ -92,10 +92,12 @@ const App: React.FC = () => {
     })
   },[cards, level])
 
+  //TODO: Extract the grid to its own component
+  const gridCSS = "grid m-12 gap-2 grid-cols-" + levels[level][0]
   return (
     <>
       <Header wins={wins} score={score} reset={reset}></Header>
-      <div className={`grid m-12 gap-2 grid-cols-${levels[level][0]}`}>
+      <div className={gridCSS}>
         {cards.map((card) => {
           const { image, id, matched } = card;
 

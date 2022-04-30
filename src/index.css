@@ -89,14 +89,6 @@ button {
   border-radius: var(--radius);
 }
 
-/* ========= Grid ========================= */
-.grid_ {
-gap: 1.25rem;
-  display: grid;
-  margin: 3rem auto;
-  grid-template-columns: repeat(4, auto);
-}
-
 /* ========= Card ========================= */
 .card {
   display: flex;
@@ -159,10 +151,6 @@ gap: 1.25rem;
     margin: auto;
     position: fixed;
     border-radius: 0;
-  }
-
-  .grid {
-    margin: auto auto 3rem auto;
   }
 
   .card {
