@@ -1,4 +1,4 @@
-import { ComponentProps, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "./Card";
 import { GameGrid } from "./GameGrid";
 import { Header } from "./Header";

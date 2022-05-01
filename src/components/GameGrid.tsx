@@ -1,6 +1,3 @@
-const gameGridConfig = {
-
-}
 type Props = {
   rows: number;
   cols:number;
